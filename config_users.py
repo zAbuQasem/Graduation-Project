@@ -25,27 +25,12 @@ def create_users():
 			"""Creating users"""
 			run(['useradd', '-m', f'-d /home/{username}', '-p', f'$("echo "{users[username][0]}" | openssl passwd -1 -stdin)', username , '-G' , users[username][1] ])
 	except Exception as e:
-		print(f"[!] Failed to add user or user exists.")
-
-def privileges():
-	run(['setcap', 'cap_setuid+ep' ,'/usr/bin/python3.8'])
-	run(['echo', '"%Administrators	ALL=(ALL:ALL) ALL"', '>> /etc/sudoers']) # Does it work
-	run(['echo', '"Khaled ALL=(root) NOPASSWD: /usr/bin/vi"', '>> /etc/sudoers'])
-
+		print(e)
 
 
 def main():
 	create_users()
-	"""Create a bash script for this"""
-	# privileges()
 
 
 if __name__ == '__main__':
 	main()
-
-"""
-Add to vagrant file
-Check for python version
-configure ssh
-Download python3-pip, docker
-"""
