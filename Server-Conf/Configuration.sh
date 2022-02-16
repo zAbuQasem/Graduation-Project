@@ -7,7 +7,7 @@ END
 if [[ "$UID" -eq "0" ]];
 then
 	echo -e "[-] Installing dependencies\n"
-	apt install -y python3-pip docker vim
+	apt install -y python3-pip docker vim ssh
 
 	echo -e "[-] Setting SETUID capability for python3\n"
 	PYTHON=$(which python3)
