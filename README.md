@@ -4,3 +4,4 @@
 2. Create a binary that can be easily reverse engineered to access some functionality with `golang` or `c`
 3. Create a binary vulnerable to BoF to get code execution (optional).
 4. Create a CronJob from root running a bad script which is used for backup. (tar *)
+5. Cron job to clean /var/log/apache2/access.log
