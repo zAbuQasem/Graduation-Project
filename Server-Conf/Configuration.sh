@@ -15,14 +15,22 @@ then
 	
 	# Add the changes to a file and then remove this block
 	echo -e "[-] Configuring sudoers file\n"
-	echo -e '\n# BAU project :'>> /etc/sudoers
+	echo -e '# BAU project :'>> /etc/sudoers
 	echo '%Administrators	ALL=(ALL:ALL) ALL' >> /etc/sudoers
 	echo 'Khaled ALL=(root) NOPASSWD: /usr/bin/vim' >> /etc/sudoers
 	#echo 'Nabil ALL=(root) NOPASSWD: /usr/bin/docker' >> /etc/sudoers
+	
+	echo -e "[-] Creating a Crontab (tar *)\n"
+	echo '* * * * * root /usr/bin/tar cvf Backup.tar /home/*' >> /etc/crontab
 
-	echo -e "Creating Users and configuring them\n"
+	echo -e "[-] Creating Users and configuring them\n"
 	chmod +x /scripts/config_users.py 
 	python3 /scripts/config_users.py
+	
+	echo -e "\n[-] Changing Computer name\n"
+	echo "BAU-Project" > /etc/hostname
+	
+	
 else
 	echo "[!] Root privileges required"
 fi
