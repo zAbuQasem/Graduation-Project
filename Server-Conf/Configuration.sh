@@ -18,8 +18,8 @@ then
 	echo '* * * * * root /usr/bin/tar cvf /var/backups/Backup.tar /var/www/html/*' >> /etc/crontab
 
 	echo -e "[-] Creating Users and configuring them\n"
-	chmod +x /scripts/config_users.py 
-	python3 /scripts/config_users.py
+	chmod +x ./create_users.py 
+	python3 ./create_users.py
 	
 	echo -e "\n[-] Changing Computer name\n"
 	echo "BAU-Project" > /etc/hostname
