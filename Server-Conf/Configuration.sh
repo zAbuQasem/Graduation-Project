@@ -7,21 +7,15 @@ END
 if [[ "$UID" -eq "0" ]];
 then
 	echo -e "[-] Installing dependencies\n"
-	apt install -y python3-pip docker vim ssh
+	apt update -y && apt upgrade -y
+	apt install -y apache2 python3-pip docker vim ssh net-tools 
 
 	echo -e "[-] Setting SETUID capability for python3\n"
 	PYTHON=$(which python3)
 	setcap "cap_setuid+ep" $PYTHON
 	
-	# Add the changes to a file and then remove this block
-	echo -e "[-] Configuring sudoers file\n"
-	echo -e '# BAU project :'>> /etc/sudoers
-	echo '%Administrators	ALL=(ALL:ALL) ALL' >> /etc/sudoers
-	echo 'Khaled ALL=(root) NOPASSWD: /usr/bin/vim' >> /etc/sudoers
-	#echo 'Nabil ALL=(root) NOPASSWD: /usr/bin/docker' >> /etc/sudoers
-	
 	echo -e "[-] Creating a Crontab (tar *)\n"
-	echo '* * * * * root /usr/bin/tar cvf Backup.tar /home/*' >> /etc/crontab
+	echo '* * * * * root /usr/bin/tar cvf /var/backups/Backup.tar /var/www/html/*' >> /etc/crontab
 
 	echo -e "[-] Creating Users and configuring them\n"
 	chmod +x /scripts/config_users.py 
