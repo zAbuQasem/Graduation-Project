@@ -6,13 +6,13 @@ from subprocess import run
 def create_users():
 	try:
 		"""User: [password, group]"""
-		users = {"Mohammad":["Mohammad_threatints2022!", "Administrators"],
-		"Moayad": ["Moayad_threatints2022!", "adm"],
-		"Zeyad": ["Zeyad_threatints2022!", "Forensic_department"],
-		 "Omar": ["Omar_threatints2022!", "Forensic_department"],
-		"Khaled": ["Khaled_threatints2022!", "Developers"],
-		"Baker": ["Baker_threatints2022!","Developers"],
-		"Nabil": ["Nabil_threatints2022!","Developers, docker"]}
+		users = {"Mohammad":["Mohammad_threats2022!", "Administrators"],
+		"Moayad": ["Moayad_threats2022!", "adm"],
+		"Zeyad": ["Zeyad_threats2022!", "Forensic_department"],
+		 "Omar": ["Omar_threats2022!", "Forensic_department"],
+		"Khaled": ["Khaled_threats2022!", "Developers"],
+		"Baker": ["Baker_threats2022!","Developers"],
+		"Nabil": ["Nabil_threats2022!","Developers, docker"]}
 
 
 		"""Creating groups"""
