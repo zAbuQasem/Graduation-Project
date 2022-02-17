@@ -6,7 +6,7 @@ from subprocess import run
 def create_users():
 	try:
 		"""User: [password, group]"""
-		users = {"Mohammad":["Mohammad_threats2022!", "Administrators"],
+		users = {"Mohammad":["Mohammad_threats2022!", "admin"],
 		"Moayad": ["Moayad_threats2022!", "adm"],
 		"Zeyad": ["Zeyad_threats2022!", "Forensic_department"],
 		 "Omar": ["Omar_threats2022!", "Forensic_department"],
@@ -16,7 +16,7 @@ def create_users():
 
 
 		"""Creating groups"""
-		for group in ['Administrators','Forensic_department','Developers']:
+		for group in ['admin','Forensic_department','Developers']:
 			run(['groupadd', group])
 
 		# Creating users and adding them to their groups
