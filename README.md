@@ -4,6 +4,7 @@
 2. SSH keys for users
 3. Add omar webserver files
 4. Finally (Test everything)
+5. after finally ( apt install forensics-all) (optional)
 
 ### PakageDownloader.c
 ```bash
