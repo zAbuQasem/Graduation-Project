@@ -1,10 +1,12 @@
 # BAU-project
-## TODO (Zeyad)
-1. SSH password auhentication
-2. SSH keys for users
-3. Add omar webserver files
-4. Finally (Test everything)
-5. after finally ( apt install forensics-all) (optional)
+## TODO
+1. Finish UI
+2. Nabil create a docker image
+3. Prepare exploits
+4. Documentation :(
+5. Enhance ProgramDownloader and test BoF attack
+6. polkit 2022 exploit test
+999. after finally ( apt install forensics-all) (optional)
 
 ### PakageDownloader.c
 ```bash
