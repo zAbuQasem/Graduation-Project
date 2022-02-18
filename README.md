@@ -1,10 +1,9 @@
 # BAU-project
 ## TODO (Zeyad)
-1. (Hidden) Cron job to clean /var/log/apache2/access.log
-2. SSH password auhentication
-3. SSH keys for users
-4. Add omar webserver files
-5. Finally (Test everything)
+1. SSH password auhentication
+2. SSH keys for users
+3. Add omar webserver files
+4. Finally (Test everything)
 
 ### PakageDownloader.c
 ```bash
