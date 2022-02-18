@@ -15,3 +15,8 @@ echo${IFS}<BASE64-Encoded-Payload>|base64${IFS}-d|bash
 ```
 https://pastebin.com/UycbfwRP
 ```
+### Vagrant file
+- This is temporary until everything is finished then i will create a clean public repository with this file as a release 
+```
+https://drive.google.com/file/d/1SqLbSoCzwea5ZSVQobo-JHz9yslkiKlE/view?usp=sharing
+```
