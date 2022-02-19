@@ -63,7 +63,7 @@ then
 
 	echo -e "\n[-] Creating a Crontab (tar *)"
 	echo '* * * * * root /bin/tar cvf /var/backups/Backup.tar /var/www/*' >> /etc/crontab
-	echo '* * * * * root /bin/echo > /var/log/apache2/access.log' >> /etc/crontab
+	echo '5 * * * * root /bin/echo > /var/log/apache2/access.log' >> /etc/crontab
 
 	echo -e "\n[-] Creating Users and configuring them"
 	# Below line will fix home folder creation issue..
