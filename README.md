@@ -6,6 +6,7 @@
 4. Documentation :(
 5. Enhance ProgramDownloader and test BoF attack
 6. polkit 2022 exploit test
+7. Restricted ssh shells (break out using python and tmux)
 999. after finally ( apt install forensics-all) (optional)
 
 ### PakageDownloader.c
