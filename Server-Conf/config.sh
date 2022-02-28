@@ -42,6 +42,7 @@ then
 	chown -R www-data:www-data /var/www/threats.int
 	find /var/www/threats.int/ -type d -exec chmod 750 {} \;
 	find /var/www/threats.int/ -type f -exec chmod 640 {} \;
+	chmod 775 -R /var/log/apache2 
         systemctl restart apache2
 
 
@@ -63,7 +64,7 @@ then
 
 	echo -e "\n[-] Creating a Crontab (tar *)"
 	echo '* * * * * root /bin/tar cvf /var/backups/Backup.tar /var/www/*' >> /etc/crontab
-	echo '5 * * * * root /bin/echo > /var/log/apache2/access.log' >> /etc/crontab
+	echo '* * * * * root /bin/echo > /var/log/apache2/access.log' >> /etc/crontab
 
 	echo -e "\n[-] Creating Users and configuring them"
 	# Below line will fix home folder creation issue..
@@ -88,6 +89,11 @@ then
 	chmod 750 /opt/Live-Cases
 	ln -s /opt/Live-Cases /home/omar/Live-Cases
 	ln -s /opt/Live-Cases /home/zeyad/Live-Cases
+
+	echo -e "\n[-] Giving [developers] group a permission to manage services"
+	echo -e "# Currently we are using this file for debugging purposes..\n[Service]\nType=simple\nUser=root\nExecStart=/usr/bin/whoami\n[Install]\nWantedBy=multi-user.target" > /etc/systemd/system/debug.service
+	chown root:developers /etc/systemd/system/debug.service
+	chmod g+rw /etc/systemd/system/debug.service
 
 	echo -e "\n[-] Changing Computer name to: BAU-Project"
 	echo "BAU-Project" > /etc/hostname
