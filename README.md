@@ -1,8 +1,10 @@
 # BAU-project
 ## TODO
 1. Finish UI
-2. Nabil create a docker image
-3. Documentation :( 
+2. Wordpress user enumeration via login.php? 
+3. Nabil create a docker image
+4. Public mysql?
+5. Documentation :( 
 999. after finally ( apt install forensics-all) (optional)
 
 ### PakageDownloader.c
