@@ -5,9 +5,6 @@
 3. Prepare exploits
 4. Documentation :(
 5. Enhance ProgramDownloader and test BoF attack
-6. polkit 2022 exploit test
-7. Restricted ssh shells (break out using python and tmux)
-8. Dangling tmux session
 9. Developers group can manage services (create a malicious service file and run it)
 999. after finally ( apt install forensics-all) (optional)
 
