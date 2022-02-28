@@ -2,10 +2,7 @@
 ## TODO
 1. Finish UI
 2. Nabil create a docker image
-3. Prepare exploits
-4. Documentation :(
-5. Enhance ProgramDownloader and test BoF attack
-9. Developers group can manage services (create a malicious service file and run it)
+3. Documentation :( 
 999. after finally ( apt install forensics-all) (optional)
 
 ### PakageDownloader.c
