@@ -22,7 +22,8 @@ khaled  ALL=(root) NOPASSWD: /usr/bin/vim
 
 # Members of the admin group may gain root privileges
 %admin ALL=(ALL) ALL
-%developers ALL=(root) NOPASSWD: /usr/sbin/service
+%developers ALL=(root) NOPASSWD: /usr/sbin/service debug *
+%developers ALL=(root) NOPASSWD: /bin/systemctl daemon-reload
 
 # Allow members of group sudo to execute any command
 %sudo	ALL=(ALL:ALL) ALL

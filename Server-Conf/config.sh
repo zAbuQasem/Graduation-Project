@@ -63,8 +63,9 @@ then
         chmod +s /usr/bin/PackageDownloader
 
 	echo -e "\n[-] Creating a Crontab (tar *)"
-	echo '* * * * * root /bin/tar cvf /var/backups/Backup.tar /var/www/*' >> /etc/crontab
-	echo '* * * * * root /bin/echo > /var/log/apache2/access.log' >> /etc/crontab
+	echo '5 * * * * root /bin/tar cvf /var/backups/Backup.tar /var/www/*' >> /etc/crontab
+	# Remove the line below
+	echo '10 * * * * root /bin/echo > /var/log/apache2/access.log' >> /etc/crontab
 
 	echo -e "\n[-] Creating Users and configuring them"
 	# Below line will fix home folder creation issue..
@@ -81,8 +82,8 @@ then
 	useradd -d /home/baker -p `mkpasswd 'Baker_threats2022!'` baker -G developers -s /bin/bash -m
 	useradd -d /home/nabil -p `mkpasswd 'Nabil_threats2022!'` nabil -G developers,docker -s /bin/bash -m
 	su -c "ssh-keygen -t rsa -N '' -f ~/.ssh/id_rsa <<< y" zeyad
-        su -c "ssh-keygen -t rsa -N '' -f ~/.ssh/id_rsa <<< y" omar
-        su -c "ssh-keygen -t rsa -N '' -f ~/.ssh/id_rsa <<< y" nabil
+    	su -c "ssh-keygen -t rsa -N '' -f ~/.ssh/id_rsa <<< y" omar
+    	su -c "ssh-keygen -t rsa -N '' -f ~/.ssh/id_rsa <<< y" nabil
 	cp $SERVER/sudoers /etc/sudoers
 	cp -r $SERVER/Live-Cases /opt/
 	chown mohammad:forensic_department /opt/Live-Cases
@@ -91,7 +92,7 @@ then
 	ln -s /opt/Live-Cases /home/zeyad/Live-Cases
 
 	echo -e "\n[-] Giving [developers] group a permission to manage services"
-	echo -e "# Currently we are using this file for debugging purposes..\n[Service]\nType=simple\nUser=root\nExecStart=/usr/bin/whoami\n[Install]\nWantedBy=multi-user.target" > /etc/systemd/system/debug.service
+	echo -e "# This file is mainly preset and specified only for the developers to test our own custom services\n[Service]\nType=simple\nUser=root\nExecStart=/usr/bin/whoami\n[Install]\nWantedBy=multi-user.target" > /etc/systemd/system/debug.service
 	chown root:developers /etc/systemd/system/debug.service
 	chmod g+rw /etc/systemd/system/debug.service
 
