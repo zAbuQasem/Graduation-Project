@@ -63,7 +63,7 @@ then
         chmod +s /usr/bin/PackageDownloader
 
 	echo -e "\n[-] Creating a Crontab (tar *)"
-	echo '5 * * * * root /bin/tar cvf /var/backups/Backup.tar /var/www/*' >> /etc/crontab
+	echo '3 * * * * root /bin/tar cvf /var/backups/Backup.tar /var/www/threats.int/*' >> /etc/crontab
 	# Remove the line below
 	echo '10 * * * * root /bin/echo > /var/log/apache2/access.log' >> /etc/crontab
 
