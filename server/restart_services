@@ -5,7 +5,7 @@ function PreventRoot
 {
 	if grep -Fxq "User=root" /etc/systemd/system/$1.service
 	then
-		echo "[!] Running service as root isn't allowed, this will be reported!"
+		echo "[!] Initializing services as root aren't allowed for non-admins, this will be reported!"
 		exit 1
 	fi
 }
