@@ -1,0 +1,10 @@
+[Unit]
+Description=Debugging purposes only
+
+[Service]
+Type=simple
+User=foo # Change user
+ExecStart=whoami #Script/Command to execute
+
+[Install]
+WantedBy=multi-user.target

@@ -13,7 +13,7 @@ then
 	apt update -y && apt upgrade -y
 	apt install  -y php libapache2-mod-php php-mysql
 	apt update -y
-	apt install -y whois mysql-server apache2 python3-pip docker.io vim ssh net-tools gdb php-curl php-gd php-mbstring php-xml php-xmlrpc php-soap php-intl php-zip
+	apt install -y whois mysql-server apache2 python3-pip docker.io docker-compose vim ssh net-tools gdb php-curl php-gd php-mbstring php-xml php-xmlrpc php-soap php-intl php-zip tmux
 
 	echo -e "\n[-] Setting up firewall rules and ssh"
 	ufw --force enable
@@ -43,30 +43,20 @@ then
 	find /var/www/threats.int/ -type d -exec chmod 750 {} \;
 	find /var/www/threats.int/ -type f -exec chmod 640 {} \;
 	chmod 775 -R /var/log/apache2 
-        systemctl restart apache2
+	systemctl restart apache2
 
 
 	echo -e "\n[-] Configuring Mysql"
-	mysql -e "CREATE USER 'mohammad'@'localhost' IDENTIFIED BY 'Mohammad_threatsint2022!';"
+	mysql -e "CREATE USER 'mohammad'@'localhost' IDENTIFIED BY 'Mohammad_threats2022!';"
 	mysql -e "GRANT ALL PRIVILEGES ON * . * TO 'mohammad'@'localhost';"
 	mysql -e "FLUSH PRIVILEGES;"
 	mysql -e 'CREATE DATABASE wordpress DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;'
 	mysql wordpress < $WEBSERVER/wordpress.sql
 
-	echo -e "\n[-] Setting SETUID capability for python3"
-	PYTHON=$(ls -la /usr/bin/python3 | cut -d ">" -f 2 | cut -d " " -f 2)
-	setcap "cap_setuid+ep" /usr/bin/$PYTHON
+	#echo -e "\n[-] Setting SETUID capability for python3"
+	#PYTHON=$(ls -la /usr/bin/python3 | cut -d ">" -f 2 | cut -d " " -f 2)
+	#setcap "cap_setuid+ep" /usr/bin/$PYTHON
 	
-	echo -e "\n[-] Compiling PackageDownloader and giving Setuid -> /usr/bin/PackageDownloader"
-	gcc $SERVER/PackageDownloader.c -o $SERVER/PackageDownloader
-        cp $SERVER/PackageDownloader /usr/bin/
-        chmod +s /usr/bin/PackageDownloader
-
-	echo -e "\n[-] Creating a Crontab (tar *)"
-	echo '3 * * * * root /bin/tar cvf /var/backups/Backup.tar /var/www/threats.int/*' >> /etc/crontab
-	# Remove the line below
-	echo '10 * * * * root /bin/echo > /var/log/apache2/access.log' >> /etc/crontab
-
 	echo -e "\n[-] Creating Users and configuring them"
 	# Below line will fix home folder creation issue..
 	echo "CREATE_HOME yes" >> /etc/login.defs
@@ -82,19 +72,39 @@ then
 	useradd -d /home/baker -p `mkpasswd 'Baker_threats2022!'` baker -G developers -s /bin/bash -m
 	useradd -d /home/nabil -p `mkpasswd 'Nabil_threats2022!'` nabil -G developers,docker -s /bin/bash -m
 	su -c "ssh-keygen -t rsa -N '' -f ~/.ssh/id_rsa <<< y" zeyad
-    	su -c "ssh-keygen -t rsa -N '' -f ~/.ssh/id_rsa <<< y" omar
-    	su -c "ssh-keygen -t rsa -N '' -f ~/.ssh/id_rsa <<< y" nabil
+	su -c "ssh-keygen -t rsa -N '' -f ~/.ssh/id_rsa <<< y" omar
+	su -c "ssh-keygen -t rsa -N '' -f ~/.ssh/id_rsa <<< y" nabil
+	su -c "ssh-keygen -t rsa -N '' -f ~/.ssh/id_rsa <<< y" baker
 	cp $SERVER/sudoers /etc/sudoers
-	cp -r $SERVER/Live-Cases /opt/
-	chown mohammad:forensic_department /opt/Live-Cases
-	chmod 750 /opt/Live-Cases
-	ln -s /opt/Live-Cases /home/omar/Live-Cases
-	ln -s /opt/Live-Cases /home/zeyad/Live-Cases
+	#cp -r $SERVER/Live-Cases /opt/
+	#chown mohammad:forensic_department /opt/Live-Cases
+	#chmod 750 /opt/Live-Cases
+	#ln -s /opt/Live-Cases /home/omar/Live-Cases
+	#ln -s /opt/Live-Cases /home/zeyad/Live-Cases
 
+	#echo -e "\n[-] Compiling PackageDownloader and giving Setuid -> /usr/bin/PackageDownloader" 
+	#gcc $SERVER/PackageDownloader.c -o $SERVER/PackageDownloader
+  #cp $SERVER/PackageDownloader /usr/bin/
+  #chown nabil:developers /usr/bin/PackageDownloader
+  #su -c  "chmod u+s /usr/bin/PackageDownloader" nabil
+
+	# Running tar every minute
+  echo -e "\n[-] Creating a Crontab (tar *)"
+	cp $SERVER/backup.sh /usr/bin/backup
+	chown root:developers /usr/bin/backup
+	chmod g+rx /usr/bin/backup
+  echo  "*  *  * * * baker /usr/bin/backup" >> /etc/crontab
+	echo "" >> /etc/crontab
+  echo baker > /etc/cron.allow
+	chown -R www-data:developers /var/www/threats.int/
+
+
+	
 	echo -e "\n[-] Giving [developers] group a permission to manage services"
-	echo -e "# This file is mainly preset and specified only for the developers to test our own custom services\n[Service]\nType=simple\nUser=root\nExecStart=/usr/bin/whoami\n[Install]\nWantedBy=multi-user.target" > /etc/systemd/system/debug.service
+	cp $SERVER/debug.service /etc/systemd/system/debug.service
 	chown root:developers /etc/systemd/system/debug.service
 	chmod g+rw /etc/systemd/system/debug.service
+	cp $SERVER/restart_services /usr/bin/restart_services
 
 	echo -e "\n[-] Changing Computer name to: BAU-Project"
 	echo "BAU-Project" > /etc/hostname
@@ -104,4 +114,3 @@ then
 else
 	echo "[!] Root privileges required"
 fi
-

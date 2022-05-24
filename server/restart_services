@@ -1,0 +1,25 @@
+#!/bin/bash
+
+
+function PreventRoot 
+{
+	if grep -Fxq "User=root" /etc/systemd/system/$1.service
+	then
+		echo "[!] Running service as root isn't allowed, this will be reported!"
+		exit 1
+	fi
+}
+
+
+if [[ -z $1 ]]
+then
+	echo "[!] Usage: $0 <Service-Name>"
+	exit 1
+else
+	PreventRoot $1
+	echo "[+] Restarting $1 service"
+	/bin/systemctl daemon-reload
+	/bin/systemctl restart $1
+	echo "[+] Done"
+fi
+
