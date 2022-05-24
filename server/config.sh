@@ -15,6 +15,7 @@ then
 	apt update -y
 	apt install -y whois mysql-server apache2 python3-pip docker.io docker-compose vim ssh net-tools gdb php-curl php-gd php-mbstring php-xml php-xmlrpc php-soap php-intl php-zip tmux
 
+	# Firewall rules and things
 	echo -e "\n[-] Setting up firewall rules and ssh"
 	ufw --force enable
 	ufw allow "Apache Full"
@@ -23,6 +24,7 @@ then
 	ssh-keygen -t rsa -N 'Mohammad_threats2022!' -f /root/.ssh/id_rsa <<< y
 	service apache2 start
 
+	# Setting up apache2 server
 	echo -e "\n[-] Setting up apache2 and wordpress"
 	echo "127.0.0.1 threats.int" >> /etc/hosts
 	cp $WEBSERVER/apache-selfsigned.key /etc/ssl/private/
@@ -45,7 +47,7 @@ then
 	chmod 775 -R /var/log/apache2 
 	systemctl restart apache2
 
-
+	# Configuring Mysql database
 	echo -e "\n[-] Configuring Mysql"
 	mysql -e "CREATE USER 'mohammad'@'localhost' IDENTIFIED BY 'Mohammad_threats2022!';"
 	mysql -e "GRANT ALL PRIVILEGES ON * . * TO 'mohammad'@'localhost';"
@@ -53,10 +55,7 @@ then
 	mysql -e 'CREATE DATABASE wordpress DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;'
 	mysql wordpress < $WEBSERVER/wordpress.sql
 
-	#echo -e "\n[-] Setting SETUID capability for python3"
-	#PYTHON=$(ls -la /usr/bin/python3 | cut -d ">" -f 2 | cut -d " " -f 2)
-	#setcap "cap_setuid+ep" /usr/bin/$PYTHON
-	
+	# Creating users and groups
 	echo -e "\n[-] Creating Users and configuring them"
 	# Below line will fix home folder creation issue..
 	echo "CREATE_HOME yes" >> /etc/login.defs
@@ -76,17 +75,7 @@ then
 	su -c "ssh-keygen -t rsa -N '' -f ~/.ssh/id_rsa <<< y" nabil
 	su -c "ssh-keygen -t rsa -N '' -f ~/.ssh/id_rsa <<< y" baker
 	cp $SERVER/sudoers /etc/sudoers
-	#cp -r $SERVER/Live-Cases /opt/
-	#chown mohammad:forensic_department /opt/Live-Cases
-	#chmod 750 /opt/Live-Cases
-	#ln -s /opt/Live-Cases /home/omar/Live-Cases
-	#ln -s /opt/Live-Cases /home/zeyad/Live-Cases
-
-	#echo -e "\n[-] Compiling PackageDownloader and giving Setuid -> /usr/bin/PackageDownloader" 
-	#gcc $SERVER/PackageDownloader.c -o $SERVER/PackageDownloader
-  #cp $SERVER/PackageDownloader /usr/bin/
-  #chown nabil:developers /usr/bin/PackageDownloader
-  #su -c  "chmod u+s /usr/bin/PackageDownloader" nabil
+	echo "[+] Congratulations on Successfully Hacking this Server!" > /root/proof.txt
 
 	# Running tar every minute
   echo -e "\n[-] Creating a Crontab (tar *)"
