@@ -1,28 +1,16 @@
-# BAU-project
-## TODO
-1. Finish UI
-2. Wordpress user enumeration via login.php? 
-3. Nabil create a docker image
-4. Public mysql?
-5. Documentation :( 
-999. after finally ( apt install forensics-all) (optional)
+# Vulnerable Linux Server
+As a CTF players and infosec geeks we decided to make this server as our graduation project!
+## What will you learn?
+1. Exploit LFI to read arbitary files.
+2. Take advantage of weak password policies.
+3. Exploiting a wildcard injection.
+4. Systemd services.
+5. Docker containers and mounts.
 
-### PakageDownloader.c
-```bash
-# Reverse shell command
-echo${IFS}<BASE64-Encoded-Payload>|base64${IFS}-d|bash
-```
-## Breach similation (might cancel..)
-```
-https://pastebin.com/UycbfwRP
-```
-## Password list
-Download: https://github.com/clem9669/hashcat-rule/blob/master/clem9669_medium.rule
-```
-# mohammad_threats2022 (sample in PassFromBreach.txt )
-hashcat -r clem9669_medium.rule --stdout PassFromBreach.txt > output.txt
-```
-## Docker priv abuse
-```
-docker run --rm -it -v /:/MountedFS ubuntu bash
-```
+## Setting up the environment
+[TODO]
+## References
+- [Vagrant docs](https://www.vagrantup.com/docs)
+- [LFI-Tutorial](https://brightsec.com/blog/local-file-inclusion-lfi/)
+- [Systemd Services](https://www.freedesktop.org/software/systemd/man/systemd.service.html)
+- [Docker run](https://docs.docker.com/engine/reference/run/)
