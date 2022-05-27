@@ -321,7 +321,7 @@ baker@BAU-Project:~$ cat .ssh/authorized_keys
 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC8opR69nlCw4Fj7lmkwY/GwNi3lhdRmmJTndf7eUoBkfq0HrlJca1Nj5Ii/CkybIH4X4vke5mA+6F2vOsManmIIlkN3pu9mM9jyzz8inMze5wwM5kIk+YBntJOVJR9v1lPBmBjOIwLiCHWkBbfEr/5etG6POEE8ffpH0Sw5s8IgsWMy8P+5sanLw6sYfrOd8ibHUi6MK0SUQYtdUs9hdYg7h1D/4VB3a82W3qnnsknq+pSosvisnJ6EQPOmaEesd37D2mdAC8JQtVel/JJBkeRisbS/HLmggHtIkTD7nWGyYx3UXdqG+t0wMIWWE+HFqwGNIUTgCa8lIeJMpXfVpq6rwQdlnjeVDJdEZrWfwCjoDstL591JRIPiTXewI3vQGDRoQ0Gpncwo2TEwKWLoc7f0ZlzLINcKcxFXLRthEg+mk3M7wynw6MueSysxIrlDbPSemHsbzhkgek4P6AWtAe1YzES8k8OaqliaaujiAyz8F069VcFGat0aWTrpXtipm0= zeyad@AbuQasem
 ```
 ![[Pasted image 20220524234027.png]]
-# From baker to nabil al wr3
+# From baker to nabil
 Running sudo -l shows us that baker can run a script as root without a password
 ![[Pasted image 20220524234157.png]]
 - Script contents
