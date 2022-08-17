@@ -8,7 +8,12 @@ As a CTF players and infosec geeks we decided to make this server as our graduat
 5. Docker containers and mounts.
 
 ## Setting up the environment
-[TODO]
+```bash
+wget https://github.com/zAbuQasem/Graduation-Project/releases/download/1.0/Project.tar.gz
+tar -zxvf Project.tar.gz
+cd Bau-Project
+sudo vagrant up
+```
 ## References
 - [Vagrant docs](https://www.vagrantup.com/docs)
 - [LFI-Tutorial](https://brightsec.com/blog/local-file-inclusion-lfi/)
