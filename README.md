@@ -13,6 +13,14 @@ wget https://github.com/zAbuQasem/Graduation-Project/releases/download/1.0/Proje
 tar -zxvf Project.tar.gz
 cd Bau-Project
 sudo vagrant up
+
+# Get the Machine ip
+sudo vagrant ssh
+<Inside vm> ifconfig
+
+# Then add the ip, domain to /etc/hosts
+sudo vim /etc/hosts
+<ip> threats.int
 ```
 ## References
 - [Vagrant docs](https://www.vagrantup.com/docs)
