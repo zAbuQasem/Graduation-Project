@@ -22,6 +22,10 @@ sudo vagrant ssh
 sudo vim /etc/hosts
 <ip> threats.int
 ```
+
+# Demonstration Video:
+[<img src="https://i.ytimg.com/vi/oYMAUlkPkT4/maxresdefault.jpg" width="50%">](https://www.youtube.com/watch?v=oYMAUlkPkT4 "Demonstration Video")
+
 ## References
 - [Vagrant docs](https://www.vagrantup.com/docs)
 - [LFI-Tutorial](https://brightsec.com/blog/local-file-inclusion-lfi/)
